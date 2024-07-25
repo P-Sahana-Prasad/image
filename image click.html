@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Click Challenge</title>
+    <style>
+        body {
+            background-image: url('gif.gif');
+            background-size: cover;
+            text-align: center;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Click Challenge - Level 1</h1>
+    <h1>Choose Images which are part of Frontend</h1>
+    <div class="image-container">
+        <img src="1.png" alt="Image 1" onclick="checkImage(this)">
+        <img src="2.jpeg" alt="Image 2" onclick="checkImage(this)">
+        <img src="3.jpg" alt="Image 3" onclick="checkImage(this)">
+        <img src="4.png" alt="Image 4" onclick="checkImage(this)">
+        <img src="5.jpg" alt="Image 5" onclick="checkImage(this)">
+        <img src="6.jpeg" alt="Image 6" onclick="checkImage(this)">
+        <img src="7.jpeg" alt="Image 7" onclick="checkImage(this)">
+        <img src="8.jpeg" alt="Image 8" onclick="checkImage(this)">
+        <img src="9.jpg" alt="Image 9" onclick="checkImage(this)">
+    </div>
+    <button onclick="checkAnswer()">Submit</button>
+    <script>
+        let correctImages = [3, 5, 8]; // Array of correct image indices
+        let clickedImages = [];
+
+        function checkImage(image) {
+            let index = Array.from(image.parentNode.children).indexOf(image) + 1; // Get image index
+            if (correctImages.includes(index)) {
+                clickedImages.push(index);
+                image.classList.add('correct'); // Optional: Add a class for correct images
+            } else {
+                image.classList.add('incorrect'); // Optional: Add a class for incorrect images
+            }
+        }
+
+        function checkAnswer() {
+            if (clickedImages.length === correctImages.length && clickedImages.every(i => correctImages.includes(i))) {
+                alert("All correct images clicked!");
+                window.location.href = "newpage.html";
+                // Add logic for next level or game completion here
+            } else {
+                alert("Incorrect images selected!");
+            }
+            clickedImages = []; // Reset clicked images for next attempt
+        }
+    </script>
+</body>
+</html>
